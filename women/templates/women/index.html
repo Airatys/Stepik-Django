@@ -1,9 +1,16 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
+         <title>{{ main_title|default:'Без заголовка' }}</title>
 </head>
 <body>
-<h1>Главная страница</h1>
+<p >{{ menu|join:'|' }}</p>
+<p >{{ float|add:'50' }}</p>
+<p >{{ lst|length }}</p>
+<p >{{ set }}</p>
+<p >{{ dict.key_1 }} {{ dict.key_2 }}</p>
+<p >{{ obj }}</p>
+<p >{{ url }}</p>
+<h1>{{ title|capfirst|cut:'?' }}</h1>
 </body>
 </html>
