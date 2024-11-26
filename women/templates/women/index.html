@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-         <title>{{ main_title|default:'Без заголовка' }}</title>
+         <title>{{ title|default:'Без заголовка' }}</title>
 </head>
 <body>
-<p >{{ menu|join:'|' }}</p>
-<p >{{ float|add:'50' }}</p>
-<p >{{ lst|length }}</p>
-<p >{{ set }}</p>
-<p >{{ dict.key_1 }} {{ dict.key_2 }}</p>
-<p >{{ obj }}</p>
-<p >{{ url }}</p>
-<h1>{{ title|capfirst|cut:'?' }}</h1>
+<p >{{ menu|join:' | ' }}</p>
+<h1>{{ title|capfirst }}</h1>
+<ul>
+    {% for p in posts %}
+    {% if p.is_published %}
+    <li>
+            <h2>{{ p.title }}</h2>
+            <p>{{ p.content }}</p>
+    </li>
+            {% if not forloop.last %}
+            <hr>
+            {% endif %}
+    {% endif %}
+    {% endfor %}
+</ul>
+
 </body>
 </html>

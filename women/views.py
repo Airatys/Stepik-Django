@@ -10,27 +10,25 @@ from django.template.defaultfilters import slugify
 # Create your views here.
 menu = ["О сайте", "Добавить статью", "Обратная связь", "Войти"]
 
-class MyClass:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+data_db = [
+    {'id': 1, 'title': 'Анджелина Джоли', 'content': 'Биография Анджелины Джоли', 'is_published': True},
+    {'id': 2, 'title': 'Марго Робби', 'content': 'Биография Марго Робби', 'is_published': False},
+    {'id': 3, 'title': 'Джулия Робертс', 'content': 'Биография Джулия Робертс', 'is_published': True},
+]
 
 def index(request):
     data = {
-        'title': 'главная страница?',
+        'title': 'Главная страница',
         'menu': menu,
-        'float': 28.56,
-        'lst': [1, 2, 'abc', True],
-        'set': {1, 1, 2, 3, 2, 5},
-        'dict': {'key_1': 'value_1', 'key_2': 'value_2'},
-        'obj': MyClass(10, 20),
-        'url': slugify("The main page"),
+        'posts': data_db,
     }
-    t = render_to_string('women/index.html', context=data)
-    return HttpResponse(t)
+    return render(request, 'women/index.html', context=data)
+
+
 
 def about(request):
-    return render(request, 'women/about.html', {'title': 'О сайте'})
+    t = render_to_string('women/about.html', {'title': 'О сайте'})
+    return HttpResponse(t)
 
 def categories(request, cat_id):
     return HttpResponse(f'<h1>Статьи по категориям</h1><p >id:{cat_id}</p>')
