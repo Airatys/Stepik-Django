@@ -29,7 +29,7 @@ def index(request):
     return render(request, 'women/index.html', context=data)
 
 def about(request):
-    t = render_to_string('women/about.html', {'title': 'О сайте'})
+    t = render_to_string('women/about.html', {'title': 'О сайте', 'menu': menu,})
     return HttpResponse(t)
 
 def addpage(request):

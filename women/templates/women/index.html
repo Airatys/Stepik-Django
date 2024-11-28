@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-         <title>{{ title|default:'Без заголовка' }}</title>
-</head>
-<body>
-<ul>
-    <li><a href="{% url 'home' %}">Главная страница</a></li>
-    {% for m in menu %}
-    {% if not forloop.last %}<li>{% else %} <li class='last'> {% endif %}
-    <a href="{% url m.url_name %}">{{ m.title }}</a>
-    </li>
-    {% endfor %}
-</ul>
-<p >{{ menu|join:' | ' }}</p>
-<h1>{{ title|capfirst }}</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+{% include 'women/includes/nav.html' only with title='заголовок' %}
+
 <ul>
     {% for p in posts %}
     {% if p.is_published %}
@@ -29,5 +20,6 @@
     {% endfor %}
 </ul>
 
-</body>
-</html>
+{% include 'women/includes/nav.html' only %}
+
+{% endblock %}
